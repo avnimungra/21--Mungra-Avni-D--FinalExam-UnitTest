@@ -1,23 +1,28 @@
 
-
 public class StringCalculator {
+    private String string;
 
-    private static int add(final String numbers) {
+    public static int add(final String numbers) {
+        if(numbers.contains("-")){
+            throw new IllegalArgumentException("Error");
+        }
         int returnValue = 0;
-        String[] numbersArray = numbers.split(d);
-        List negativeNumbers = new ArrayList();
+        String[] numbersArray = numbers.split(",|\n");
         for (String number : numbersArray) {
             if (!number.trim().isEmpty()) {
-                int numberInt = Integer.parseInt(number.trim());
-                if (numberInt < 0) {
-                    negativeNumbers.add(numberInt);
+                if(1000 > Integer.parseInt(number.trim())) {
+                    returnValue += Integer.parseInt(number.trim());
                 }
-                returnValue += numberInt;
+
             }
         }
-        if (negativeNumbers.size() > 0) {
-            throw new RuntimeException("Negatives are not allowed: " + negativeNumbers.toString());
-        }
         return returnValue;
+    }
+    //sets strings
+    public void setString(String s) {
+        string = s;
+    }
+    public String getString () {
+        return string;
     }
 }
